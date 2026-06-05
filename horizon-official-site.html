@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HORIZON 地平线建筑装饰设计</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap');
+
+  :root {
+    --black: #0d0d0d;
+    --white: #fafaf8;
+    --gray-50: #f5f5f2;
+    --gray-100: #ededeb;
+    --gray-200: #e0e0dc;
+    --gray-300: #cccccc;
+    --gray-400: #999996;
+    --gray-500: #6b6b67;
+    --gray-600: #444441;
+    --gray-700: #2a2a27;
+    --gray-800: #1a1a18;
+    --border: rgba(0,0,0,0.07);
+    --radius: 3px;
+    --transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    --transition-fast: 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, system-ui, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .en { font-family: 'Playfair Display', Georgia, serif; letter-spacing: 0.02em; }
+
+  /* ═══ HEADER ═══ */
+  .header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: all var(--transition);
+    color: #fff; mix-blend-mode: difference;
+  }
+  .header.scrolled {
+    background: rgba(250,250,248,0.94); backdrop-filter: blur(20px);
+    color: var(--black); mix-blend-mode: normal;
+    padding: 14px 48px; border-bottom: 1px solid var(--border);
+  }
+  .header-logo { height: 36px; display: flex; align-items: center; }
+  .header-logo img { height: 34px; width: auto; filter: brightness(0) invert(1); transition: filter var(--transition); }
+  .header.scrolled .header-logo img { filter: none; }
+  .nav { display: flex; gap: 36px; list-style: none; }
+  .nav a {
+    text-decoration: none; color: inherit; font-size: 12.5px; font-weight: 400;
+    letter-spacing: 0.07em; transition: opacity var(--transition-fast);
+    font-family: 'Playfair Display', serif; text-transform: uppercase;
+  }
+  .nav a:hover { opacity: 0.45; }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    width: 100%; min-height: 100vh;
+    background: #0a0a0a;
+    display: flex; align-items: center;
+    padding: 100px 0 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 75% 50%, rgba(255,255,255,0.015) 0%, transparent 60%),
+      radial-gradient(ellipse at 25% 30%, rgba(255,255,255,0.01) 0%, transparent 50%);
+  }
+  .hero-inner {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 1400px; margin: 0 auto;
+    padding: 0 48px;
+    display: flex; align-items: center;
+    gap: 60px;
+  }
+  .hero-left { flex: 0 0 36%; }
+  .hero-right { flex: 0 0 60%; }
+
+  .hero-logo {
+    margin-bottom: 36px;
+    display: block; cursor: pointer; position: relative;
+  }
+  .hero-logo:hover::after {
+    content: '点击替换 Logo'; position: absolute; top: -28px; left: 0;
+    font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.06em;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+  .hero-logo img {
+    height: auto; width: clamp(200px, 22vw, 320px);
+    filter: brightness(0) invert(1);
+    display: block;
+  }
+
+  .hero-company-name {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .hero-company-name .en {
+    font-size: 0.32em;
+    font-weight: 400;
+    opacity: 0.3;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .hero-divider {
+    width: 48px; height: 1px;
+    background: rgba(255,255,255,0.15);
+    margin: 32px 0;
+  }
+
+  .hero-intro {
+    font-size: clamp(14px, 1.25vw, 16px);
+    color: rgba(255,255,255,0.5);
+    line-height: 2;
+    max-width: 620px;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-services-row {
+    display: flex; gap: 32px;
+    margin-top: 40px;
+  }
+  .hero-service-tag {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.1em;
+    font-family: 'Playfair Display', serif;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: all var(--transition-fast);
+    cursor: default;
+  }
+  .hero-service-tag:hover { color: rgba(255,255,255,0.65); border-bottom-color: rgba(255,255,255,0.2); }
+
+  .hero-photo {
+    width: 100%;
+    position: relative; overflow: hidden; cursor: pointer;
+  }
+  .hero-photo:hover::after {
+    content: '点击替换形象照'; position: absolute; top: 12px; left: 12px; z-index: 2;
+    font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.06em;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+  .hero-photo img {
+    width: 100%; height: auto; display: block;
+    filter: grayscale(100%) contrast(1.05) brightness(0.85);
+    transition: filter 0.8s ease;
+  }
+  .hero-photo::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, transparent 30%, transparent 70%, rgba(10,10,10,0.3) 100%);
+  }
+
+  .hero-scroll-hint {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0.25; z-index: 1;
+  }
+  .hero-scroll-hint span {
+    font-family: 'Playfair Display', serif;
+    font-size: 10px; letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+  }
+
+  /* ═══ BANNER CAROUSEL ═══ */
+  .banner-section { padding: 0 4px; max-width: 100%; margin: 0 auto; }
+  .banner-carousel { position: relative; overflow: hidden; background: var(--gray-800); }
+  .banner-track { display: flex; transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1); }
+  .banner-slide { flex: 0 0 100%; position: relative; }
+  .banner-slide img { width: 100%; height: 70vh; min-height: 420px; object-fit: cover; display: block; }
+  .banner-slide .slide-label {
+    position: absolute; bottom: 48px; left: 48px; color: #fff;
+    font-size: clamp(24px, 2.5vw, 36px); font-weight: 600; letter-spacing: 0.02em;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+  }
+  .banner-slide .slide-label .en {
+    display:block; font-family:'Playfair Display',serif; font-size:0.4em; font-weight:400;
+    opacity:0.6; font-style:italic; margin-top:4px;
+  }
+  .banner-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+    width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(0,0,0,0.35); color: #fff; font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--transition-fast); backdrop-filter: blur(4px);
+  }
+  .banner-arrow:hover { background: rgba(0,0,0,0.6); border-color: rgba(255,255,255,0.6); }
+  .banner-arrow.prev { left: 24px; }
+  .banner-arrow.next { right: 24px; }
+  .banner-dots { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 3; }
+  .banner-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all var(--transition-fast); }
+  .banner-dot.active { background: #fff; width: 20px; border-radius: 3px; }
+  .banner-empty { height:200px; display:flex; align-items:center; justify-content:center; color:var(--gray-400); font-size:14px; border:1px dashed var(--gray-300); margin:0 4px; }
+
+  /* ═══ SECTIONS ═══ */
+  .section { padding: 100px 48px; max-width: 1400px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Playfair Display', serif; font-size: 10.5px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gray-400); margin-bottom: 40px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .section-label::before { content: ''; width: 20px; height: 1px; background: var(--gray-300); }
+
+  /* ═══ PROJECT TOOLBAR ═══ */
+  .project-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 48px; }
+  .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 8px 20px; border: 1px solid var(--border); background: transparent;
+    font-size: 12px; letter-spacing: 0.04em; cursor: pointer;
+    transition: all var(--transition-fast); color: var(--gray-500);
+    border-radius: var(--radius); font-family: 'Noto Sans SC', sans-serif;
+  }
+  .filter-btn:hover { border-color: var(--gray-400); color: var(--black); }
+  .filter-btn.active { background: var(--black); color: #fff; border-color: var(--black); }
+  .btn-new-project {
+    padding: 8px 28px; background: var(--black); color: #fff; border: none;
+    font-size: 12px; letter-spacing: 0.05em; cursor: pointer; border-radius: var(--radius);
+    font-family: 'Noto Sans SC', sans-serif; transition: opacity var(--transition-fast);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-new-project:hover { opacity: 0.8; }
+  .btn-export {
+    padding: 8px 28px; background: var(--white); color: var(--black); border: 1px solid var(--black);
+    font-size: 12px; letter-spacing: 0.05em; cursor: pointer; border-radius: var(--radius);
+    font-family: 'Noto Sans SC', sans-serif; transition: all var(--transition-fast);
+    display: flex; align-items: center; gap: 8px; margin-left: 8px;
+  }
+  .btn-export:hover { background: var(--black); color: #fff; }
+
+  /* ═══ PROJECT GRID ═══ */
+  .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; background: var(--border); }
+  @media (min-width: 1100px) { .project-grid { grid-template-columns: repeat(3, 1fr); } }
+  .project-folder { background: var(--white); position: relative; cursor: pointer; transition: all var(--transition); overflow: hidden; }
+  .project-folder:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); z-index: 2; }
+  .folder-cover { aspect-ratio: 4/3; overflow: hidden; position: relative; background: var(--gray-100); }
+  .folder-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1); }
+  .project-folder:hover .folder-cover img { transform: scale(1.04); }
+  .folder-cover .empty-cover { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray-300); font-size: 13px; letter-spacing: 0.05em; }
+  .folder-info { padding: 20px 24px 24px; }
+  .folder-category { font-family: 'Playfair Display', serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 6px; }
+  .folder-name { font-size: 18px; font-weight: 500; letter-spacing: 0.02em; margin-bottom: 4px; }
+  .folder-name .en { display: block; font-size: 0.55em; font-weight: 400; opacity: 0.35; font-style: italic; }
+  .folder-meta { font-size: 11px; color: var(--gray-400); letter-spacing: 0.04em; }
+  .folder-actions { position: absolute; top: 12px; right: 12px; display: flex; gap: 6px; opacity: 0; transition: opacity var(--transition-fast); z-index: 3; }
+  .project-folder:hover .folder-actions { opacity: 1; }
+  .folder-action-btn {
+    width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.55);
+    border: none; color: #fff; font-size: 13px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: background var(--transition-fast);
+  }
+  .folder-action-btn:hover { background: rgba(0,0,0,0.8); }
+  .folder-action-btn.danger:hover { background: rgba(220,40,40,0.85); }
+
+  /* ═══ DETAIL PAGE ═══ */
+  .detail-page {
+    position: fixed; inset: 0; background: var(--white); z-index: 9999;
+    overflow-y: auto; overflow-x: hidden;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .detail-page.open { transform: translateX(0); }
+  .detail-topbar {
+    position: sticky; top: 0; z-index: 10;
+    padding: 14px 48px;
+    background: rgba(250,250,248,0.94); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .detail-back {
+    display: flex; align-items: center; gap: 10px;
+    background: none; border: none; cursor: pointer;
+    font-size: 13px; letter-spacing: 0.05em; color: var(--gray-500);
+    font-family: 'Noto Sans SC', sans-serif; transition: color var(--transition-fast);
+  }
+  .detail-back:hover { color: var(--black); }
+  .detail-back svg { width: 18px; height: 18px; }
+  .detail-topbar-actions { display: flex; gap: 10px; align-items: center; }
+
+  .detail-cover {
+    width: 100%; height: 60vh; min-height: 400px;
+    background: var(--gray-800); position: relative; overflow: hidden;
+  }
+  .detail-cover img { width: 100%; height: 100%; object-fit: cover; }
+  .detail-cover .no-cover {
+    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.25); font-size: 18px; letter-spacing: 0.08em;
+  }
+
+  .detail-info { max-width: 900px; margin: 0 auto; padding: 64px 48px 48px; }
+  .detail-header-row { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; }
+  .detail-name {
+    font-size: clamp(28px, 3vw, 42px); font-weight: 700; letter-spacing: -0.01em;
+    cursor: pointer; border-bottom: 1px dashed transparent; transition: border-color var(--transition-fast);
+    display: inline-block; line-height: 1.2;
+  }
+  .detail-name:hover { border-bottom-color: var(--gray-300); }
+  .detail-name input {
+    font-size: inherit; font-weight: 700; border: none;
+    border-bottom: 2px solid var(--black); background: transparent;
+    outline: none; font-family: inherit; letter-spacing: -0.01em; width: 100%; padding: 4px 0;
+  }
+  .detail-category-badge {
+    padding: 6px 18px; border: 1px solid var(--border);
+    font-size: 11px; letter-spacing: 0.06em; color: var(--gray-500);
+    border-radius: 20px; font-family: 'Playfair Display', serif;
+    cursor: pointer; transition: all var(--transition-fast); background: transparent;
+  }
+  .detail-category-badge:hover { border-color: var(--black); color: var(--black); }
+  .detail-desc {
+    font-size: 15px; line-height: 1.9; color: var(--gray-600);
+    margin-bottom: 48px; cursor: pointer;
+    border-left: 2px solid var(--border); padding-left: 20px;
+    transition: border-color var(--transition-fast); min-height: 2em;
+  }
+  .detail-desc:hover { border-left-color: var(--gray-400); }
+  .detail-desc textarea {
+    width: 100%; border: none; outline: none; font-size: inherit;
+    line-height: inherit; font-family: inherit; color: inherit;
+    background: transparent; resize: vertical; min-height: 80px;
+  }
+  .detail-desc .placeholder { color: var(--gray-400); font-style: italic; font-size: 14px; }
+
+  .detail-section-title {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray-500); margin-bottom: 28px; padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .detail-section-title .en { font-weight: 400; opacity: 0.5; text-transform: none; font-size: 0.85em; }
+  .detail-section-count { margin-left: auto; font-weight: 400; font-size: 11px; opacity: 0.5; }
+
+  .detail-images { max-width: 1100px; margin: 0 auto; padding: 0 48px 32px; }
+  .detail-image-row {
+    margin-bottom: 4px; position: relative; overflow: hidden;
+    background: var(--gray-100); cursor: pointer;
+  }
+  .detail-image-row img { width: 100%; display: block; transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1); }
+  .detail-image-row:hover img { transform: scale(1.02); }
+  .detail-image-actions {
+    position: absolute; top: 12px; right: 12px; display: flex; gap: 6px;
+    opacity: 0; transition: opacity var(--transition-fast); z-index: 2;
+  }
+  .detail-image-row:hover .detail-image-actions { opacity: 1; }
+  .detail-img-btn {
+    width: 30px; height: 30px; border-radius: 50%; border: none; cursor: pointer;
+    font-size: 12px; display: flex; align-items: center; justify-content: center;
+    transition: all var(--transition-fast);
+  }
+  .detail-img-btn.cover-btn { background: rgba(0,0,0,0.5); color: #fff; }
+  .detail-img-btn.cover-btn:hover { background: var(--black); }
+  .detail-img-btn.cover-btn.is-cover { background: var(--black); border: 2px solid #fff; }
+  .detail-img-btn.del-btn { background: rgba(0,0,0,0.45); color: #fff; }
+  .detail-img-btn.del-btn:hover { background: rgba(220,40,40,0.8); }
+  .detail-image-row .cover-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    padding: 3px 12px; background: var(--black); color: #fff;
+    font-size: 10px; letter-spacing: 0.06em; border-radius: 2px;
+    opacity: 0; transition: opacity var(--transition-fast);
+    font-family: 'Playfair Display', serif;
+  }
+  .detail-image-row.is-cover .cover-badge { opacity: 1; }
+
+  .detail-videos { max-width: 1100px; margin: 0 auto; padding: 0 48px 48px; }
+  .detail-video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; background: var(--border); }
+  @media (min-width: 900px) { .detail-video-grid { grid-template-columns: repeat(3, 1fr); } }
+  .detail-video-item {
+    background: var(--gray-800); aspect-ratio: 16/9;
+    position: relative; overflow: hidden; cursor: pointer;
+  }
+  .detail-video-item video { width: 100%; height: 100%; object-fit: cover; }
+  .detail-video-play {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.3); transition: background var(--transition-fast);
+  }
+  .detail-video-item:hover .detail-video-play { background: rgba(0,0,0,0.1); }
+  .detail-video-play-icon {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--transition-fast);
+  }
+  .detail-video-item:hover .detail-video-play-icon { border-color: rgba(255,255,255,0.8); transform: scale(1.08); }
+  .detail-video-play-icon svg { width: 16px; height: 16px; margin-left: 2px; }
+  .detail-video-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 18px; background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+    color: #fff; font-size: 12px; letter-spacing: 0.04em;
+  }
+  .detail-video-delete {
+    position: absolute; top: 8px; right: 8px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(0,0,0,0.5); border: none; color: #fff;
+    font-size: 12px; cursor: pointer; z-index: 3;
+    opacity: 0; transition: opacity var(--transition-fast);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .detail-video-item:hover .detail-video-delete { opacity: 1; }
+  .detail-video-delete:hover { background: rgba(220,40,40,0.8); }
+
+  .detail-add-zone {
+    height: 80px; border: 1px dashed var(--gray-300);
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; cursor: pointer; transition: all var(--transition-fast);
+    color: var(--gray-400); font-size: 12px; letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+  .detail-add-zone:hover { border-color: var(--black); color: var(--black); background: var(--gray-50); }
+  .detail-add-zone.video-add { margin-top: 4px; height: 64px; background: var(--white); }
+
+  /* ═══ LIGHTBOX ═══ */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.94); z-index: 10000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox img, .lightbox video { max-width: 92vw; max-height: 90vh; object-fit: contain; }
+  .lightbox-close {
+    position: absolute; top: 28px; right: 36px; background: none;
+    border: none; color: rgba(255,255,255,0.6); font-size: 32px;
+    cursor: pointer; transition: color var(--transition-fast);
+  }
+  .lightbox-close:hover { color: #fff; }
+
+  /* ═══ ABOUT ═══ */
+  .about-section { padding: 140px 48px; max-width: 800px; margin: 0 auto; text-align: center; }
+  .about-quote { font-size: clamp(18px, 2.5vw, 28px); line-height: 1.8; color: var(--gray-600); font-weight: 300; }
+  .about-quote .en { display: block; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.5em; color: var(--gray-400); margin-top: 14px; }
+
+  /* ═══ FOOTER ═══ */
+  .footer {
+    padding: 40px 48px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--gray-400); letter-spacing: 0.04em;
+    max-width: 1400px; margin: 0 auto;
+  }
+  .footer-right { display: flex; gap: 28px; align-items: center; }
+  .footer-right img { height: 20px; width: auto; opacity: 0.4; }
+
+  .toast {
+    position: fixed; bottom: 36px; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--black); color: #fff; padding: 12px 28px;
+    border-radius: var(--radius); font-size: 12.5px; letter-spacing: 0.04em;
+    z-index: 10001; transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .hidden-input { display: none; }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 900px) {
+    .header { padding: 18px 20px; }
+    .header.scrolled { padding: 12px 20px; }
+    .nav { gap: 18px; }
+    .nav a { font-size: 11px; }
+    .header-logo img { height: 26px; }
+    .hero { padding: 120px 0 80px; min-height: auto; }
+    .hero-inner { flex-direction: column; padding: 0 24px; gap: 48px; }
+    .hero-left { flex: 1; }
+    .hero-right { flex: 1; max-width: 320px; }
+    .hero-photo img { object-position: top; }
+    .hero-logo img { width: 180px; }
+    .hero-services-row { gap: 16px; flex-wrap: wrap; }
+    .section { padding: 64px 20px; }
+    .project-grid { grid-template-columns: 1fr; }
+    .detail-topbar { padding: 12px 20px; }
+    .detail-cover { height: 40vh; min-height: 250px; }
+    .detail-info { padding: 40px 20px 32px; }
+    .detail-images { padding: 0 20px 24px; }
+    .detail-videos { padding: 0 20px 40px; }
+    .detail-video-grid { grid-template-columns: 1fr; }
+    .about-section { padding: 100px 20px; }
+    .footer { flex-direction: column; gap: 12px; padding: 28px 20px; }
+    .footer-right { flex-wrap: wrap; justify-content: center; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <nav>
+    <ul class="nav">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-logo">
+        <img src="horizon-assets/logo-new.jpg" alt="HORIZON 地平线">
+      </div>
+      <h1 class="hero-company-name">
+        地平线建筑装饰设计　<span class="en">Horizon Architectural Decoration Design</span>
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-intro">
+        专注高端洗浴、精品酒店与商业空间的全案设计。以建筑思维解构空间，用光影叙事重塑体验 — 从概念到落地，为每一个项目赋予独一无二的美学价值与商业生命力。
+      </p>
+      <div class="hero-services-row">
+        <span class="hero-service-tag">SPA &amp; BATH</span>
+        <span class="hero-service-tag">HOTEL</span>
+        <span class="hero-service-tag">COMMERCIAL</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo">
+        <img src="horizon-assets/team-photo-new.jpg" alt="Team">
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span class="en">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- BANNER CAROUSEL -->
+<section class="banner-section">
+  <div class="banner-carousel" id="bannerCarousel">
+    <div class="banner-track" id="bannerTrack"></div>
+    <button class="banner-arrow prev" id="bannerPrev">&#10094;</button>
+    <button class="banner-arrow next" id="bannerNext">&#10095;</button>
+    <div class="banner-dots" id="bannerDots"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-label en">Selected Works</div>
+  <div class="project-toolbar">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">全部 All</button>
+      <button class="filter-btn" data-filter="spa">洗浴 Spa</button>
+      <button class="filter-btn" data-filter="hotel">酒店 Hotel</button>
+      <button class="filter-btn" data-filter="commercial">商业 Commercial</button>
+    </div>
+    <button class="btn-new-project" id="btnNewProject"><span>+</span> 新建项目</button>
+    <button class="btn-export" id="btnSyncBanner"><span>&#8635;</span> 同步到轮播</button>
+    <button class="btn-export" id="btnExport"><span>&#8593;</span> 导出分享版</button>
+    <button class="btn-export" id="btnSave" style="border-color:#999;color:#999;"><span>&#128190;</span> 保存副本</button>
+  </div>
+  <div class="project-grid" id="projectGrid"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-label en" style="justify-content:center;">Philosophy</div>
+  <p class="about-quote">
+    我们相信，每一个空间都承载着独特的故事。地平线以建筑为笔，光影为墨，在功能与美学的交界处，书写属于这个时代的空间诗学。
+    <span class="en">We believe every space tells a story. At the intersection of function and poetry, Horizon crafts narratives that transcend time.</span>
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div><span class="en">HORIZON</span> &copy; 2025</div>
+  <div class="footer-right">
+    <span>中国 · 大连</span>
+    <span>info@horizon-design.cn</span>
+    <span>+86 411 0000 0000</span>
+    <img src="horizon-assets/logo-new.jpg" alt="HORIZON">
+  </div>
+</footer>
+
+<!-- PROJECT DETAIL PAGE -->
+<div class="detail-page" id="detailPage">
+  <div class="detail-topbar">
+    <button class="detail-back" id="detailBack">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      返回项目列表
+    </button>
+    <div class="detail-topbar-actions">
+      <button class="btn dark" id="detailAddToBanner">添加到首页轮播</button>
+      <button class="btn danger" id="detailDelete">删除项目</button>
+    </div>
+  </div>
+  <div class="detail-cover" id="detailCover"></div>
+  <div class="detail-info">
+    <div class="detail-header-row">
+      <div class="detail-name" id="detailName"></div>
+      <select class="detail-category-badge" id="detailCategory">
+        <option value="spa">Spa & Bath</option>
+        <option value="hotel">Hotel</option>
+        <option value="commercial">Commercial</option>
+      </select>
+    </div>
+    <div class="detail-desc" id="detailDesc"></div>
+  </div>
+  <div class="detail-images" id="detailImagesContainer">
+    <div class="detail-section-title">案例图片 <span class="en">Project Images</span><span class="detail-section-count" id="imageCount"></span></div>
+    <div id="detailImages"></div>
+    <div class="detail-add-zone" id="detailAddImage"><span>+</span> 添加图片 <span class="en" style="font-family:'Playfair Display',serif;">Add Images</span></div>
+  </div>
+  <div class="detail-videos" id="detailVideosContainer">
+    <div class="detail-section-title">项目视频 <span class="en">Project Videos</span><span class="detail-section-count" id="videoCount"></span></div>
+    <div class="detail-video-grid" id="detailVideoGrid"></div>
+    <div class="detail-add-zone video-add" id="detailAddVideo"><span>+</span> 添加视频 <span class="en" style="font-family:'Playfair Display',serif;">Add Videos</span></div>
+  </div>
+  <div style="height:80px;"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+<input type="file" class="hidden-input" id="detailImageInput" accept="image/*" multiple>
+<input type="file" class="hidden-input" id="detailVideoInput" accept="video/*" multiple>
+<input type="file" class="hidden-input" id="heroLogoInput" accept="image/*">
+<input type="file" class="hidden-input" id="heroPhotoInput" accept="image/*">
+
+<script>
+(() => {
+  'use strict';
+  const STORAGE_HERO_LOGO = 'horizon_hero_logo';
+  const STORAGE_HERO_PHOTO = 'horizon_hero_photo';
+  const DB_NAME = 'horizon_db';
+  const DB_VERSION = 2;
+  const STORE_PROJECTS = 'projects_data';
+
+  let projects = [];
+  let currentProjectId = null;
+  let currentFilter = 'all';
+  let _db = null;
+  let _bannerCache = [];
+
+  /* ═══ IndexedDB ═══ */
+  function openDB() {
+    if (_db) return Promise.resolve(_db);
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB_NAME, DB_VERSION);
+      req.onupgradeneeded = e => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(STORE_PROJECTS)) db.createObjectStore(STORE_PROJECTS);
+        if (!db.objectStoreNames.contains('banner_data')) db.createObjectStore('banner_data');
+      };
+      req.onsuccess = e => { _db = e.target.result; resolve(_db); };
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function loadData() {
+    return openDB().then(db => new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_PROJECTS, 'readonly');
+      const req = tx.objectStore(STORE_PROJECTS).get('projects');
+      req.onsuccess = () => { projects = req.result || []; resolve(); };
+      req.onerror = () => reject(req.error);
+    })).catch(e => {
+      // Fallback: try localStorage for old data
+      try { projects = JSON.parse(localStorage.getItem('horizon_v3_projects')) || []; } catch(_) { projects = []; }
+    });
+  }
+
+  function saveProjects() {
+    if (!_db) return;
+    const tx = _db.transaction(STORE_PROJECTS, 'readwrite');
+    tx.objectStore(STORE_PROJECTS).put(projects, 'projects');
+    tx.oncomplete = () => {};
+    tx.onerror = () => { toast('保存失败，存储空间不足'); };
+  }
+
+  const catMap   = { spa:'Spa & Bath', hotel:'Hotel', commercial:'Commercial' };
+  const catCnMap = { spa:'洗浴空间', hotel:'酒店空间', commercial:'商业空间' };
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+
+  function getBannerList() { return _bannerCache; }
+  async function saveBannerList(list) {
+    _bannerCache = list;
+    if (!_db) { try { _db = await openDB(); } catch(e) {} }
+    if (!_db) return;
+    return new Promise((resolve, reject) => {
+      const tx = _db.transaction('banner_data','readwrite');
+      const store = tx.objectStore('banner_data');
+      store.put({id:'banner', data:list});
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+  async function loadBannerFromDB() {
+    if (!_db) { try { _db = await openDB(); } catch(e) { _bannerCache = []; return []; } }
+    const result = await new Promise((resolve) => {
+      const tx = _db.transaction('banner_data','readonly');
+      const store = tx.objectStore('banner_data');
+      const req = store.get('banner');
+      req.onsuccess = () => {
+        _bannerCache = (req.result && req.result.data) || [];
+        if (!_bannerCache.length) {
+          try { const old = JSON.parse(localStorage.getItem('horizon_v3_banner')); if (old && old.length) { _bannerCache = old; localStorage.removeItem('horizon_v3_banner'); } } catch(e) {}
+        }
+        resolve(_bannerCache);
+      };
+      req.onerror = () => { _bannerCache = []; resolve([]); };
+    });
+    // save migrated data after readonly transaction completes
+    if (result.length) { try { await saveBannerList(result); } catch(e) {} }
+    return result;
+  }
+
+  function renderProjects() {
+    const filtered = currentFilter==='all' ? projects : projects.filter(p=>p.category===currentFilter);
+    const grid = $('#projectGrid');
+    if (!filtered.length) {
+      grid.innerHTML = `<div style="grid-column:1/-1;padding:80px 0;text-align:center;color:var(--gray-400);font-size:13px;">暂无项目<br><span class="en" style="font-family:'Playfair Display',serif;font-size:0.85em;opacity:0.5;">Click "+ 新建项目" to start</span></div>`;
+      grid.style.display='block'; return;
+    }
+    grid.style.display=''; grid.innerHTML='';
+    filtered.forEach(proj=>{
+      const ci = proj.coverIdx>=0&&proj.coverIdx<proj.images.length?proj.coverIdx:0;
+      const cover = proj.images.length ? proj.images[ci].dataUrl : null;
+      const card = document.createElement('div');
+      card.className='project-folder';
+      card.innerHTML=`<div class="folder-cover">${cover?`<img src="${cover}" loading="lazy">`:`<div class="empty-cover">暂无图片 No Image</div>`}<div class="folder-actions"><button class="folder-action-btn" data-action="del">&times;</button></div></div><div class="folder-info"><div class="folder-category en">${catMap[proj.category]}</div><div class="folder-name" data-pid="${proj.id}">${proj.name}<span class="en">${catCnMap[proj.category]}</span></div><div class="folder-meta">${proj.images.length} 图片 · ${(proj.videos||[]).length} 视频</div></div>`;
+      card.querySelector('.folder-cover').addEventListener('click',(e)=>{if(!e.target.closest('.folder-action-btn'))openDetail(proj.id);});
+      card.querySelector('.folder-info').addEventListener('click',()=>openDetail(proj.id));
+      card.querySelector('.folder-name').addEventListener('click',(e)=>{e.stopPropagation();const fn=e.currentTarget;const pid=fn.dataset.pid;const pj=projects.find(x=>x.id===pid);if(!pj)return;const orig=fn.childNodes[0].textContent;const inp=document.createElement('input');inp.value=orig;inp.style.cssText='font-size:inherit;font-weight:500;border:none;border-bottom:2px solid var(--black);background:transparent;outline:none;font-family:inherit;letter-spacing:0.02em;width:100%;padding:2px 0';inp.onblur=()=>{pj.name=inp.value||'未命名';saveProjects();renderProjects();};inp.onkeydown=ev=>{if(ev.key==='Enter')inp.blur();if(ev.key==='Escape'){inp.value=orig;inp.blur();}};fn.innerHTML='';fn.appendChild(inp);inp.focus();inp.select();});
+      card.querySelector('[data-action="del"]').addEventListener('click',(e)=>{e.stopPropagation(); deleteProject(proj.id);});
+      grid.appendChild(card);
+    });
+  }
+
+  function createProject(name,cat){
+    const id='p_'+Date.now();
+    projects.push({id,name:name||'新项目',category:cat||'spa',coverIdx:0,images:[],videos:[],desc:'',createdAt:new Date().toISOString()});
+    saveProjects();renderProjects();return id;
+  }
+  function deleteProject(id){
+    projects=projects.filter(p=>p.id!==id);
+    saveProjects();renderProjects();
+    closeDetail();toast('项目已删除');
+  }
+
+  function openDetail(pid){currentProjectId=pid;renderDetail();$('#detailPage').classList.add('open');document.body.style.overflow='hidden';$('#detailPage').scrollTop=0;}
+  function closeDetail(){$('#detailPage').classList.remove('open');document.body.style.overflow='';currentProjectId=null;}
+  function getProject(){return projects.find(p=>p.id===currentProjectId);}
+
+  function renderDetail(){
+    const p=getProject();if(!p)return;
+    const ci=p.coverIdx>=0&&p.coverIdx<p.images.length?p.coverIdx:0;
+    const cs=p.images.length?p.images[ci].dataUrl:null;
+    $('#detailCover').innerHTML=cs?`<img src="${cs}" alt="">`:`<div class="no-cover en">No Cover Image</div>`;
+    const ne=$('#detailName');ne.textContent=p.name;
+    ne.onclick=()=>{const inp=document.createElement('input');inp.value=p.name;inp.onblur=()=>{p.name=inp.value||'未命名';saveProjects();renderDetail();renderProjects();};inp.onkeydown=e=>{if(e.key==='Enter')inp.blur();};ne.innerHTML='';ne.appendChild(inp);inp.focus();inp.select();};
+    $('#detailCategory').value=p.category;
+    $('#detailCategory').onchange=function(){p.category=this.value;saveProjects();renderProjects();};
+    const de=$('#detailDesc');
+    de.innerHTML=p.desc?p.desc.replace(/\n/g,'<br>'):'<span class="placeholder">点击添加项目描述 Click to add description</span>';
+    de.onclick=()=>{const ta=document.createElement('textarea');ta.value=p.desc||'';ta.placeholder='描述这个项目...';ta.onblur=()=>{p.desc=ta.value;saveProjects();renderDetail();};ta.onkeydown=e=>{if(e.key==='Escape')ta.blur();};de.innerHTML='';de.appendChild(ta);ta.focus();};
+    const ic=$('#detailImages');ic.innerHTML='';
+    p.images.forEach((img,idx)=>{
+      const row=document.createElement('div');
+      row.className='detail-image-row'+(idx===p.coverIdx?' is-cover':'');
+      row.innerHTML=`<img src="${img.dataUrl}" loading="lazy"><div class="cover-badge en">Cover</div><div class="detail-image-actions"><button class="detail-img-btn cover-btn${idx===p.coverIdx?' is-cover':''}" title="设为封面">★</button><button class="detail-img-btn del-btn" title="删除">&times;</button></div>`;
+      row.querySelector('img').addEventListener('click',()=>openLightbox(img.dataUrl,'image'));
+      row.querySelector('.cover-btn').addEventListener('click',e=>{e.stopPropagation();p.coverIdx=idx;saveProjects();renderDetail();renderProjects();toast('已设为封面');});
+      row.querySelector('.del-btn').addEventListener('click',e=>{e.stopPropagation();p.images.splice(idx,1);if(p.coverIdx>=p.images.length)p.coverIdx=Math.max(0,p.images.length-1);if(!p.images.length)p.coverIdx=-1;saveProjects();renderDetail();renderProjects();});
+      ic.appendChild(row);
+    });
+    $('#imageCount').textContent=`${p.images.length} 张`;
+    const vg=$('#detailVideoGrid');vg.innerHTML='';
+    (p.videos||[]).forEach((vid,idx)=>{
+      const div=document.createElement('div');
+      div.className='detail-video-item';
+      const src=vid.dataUrl||vid.blobUrl;
+      div.innerHTML=`<video src="${src}" preload="metadata" muted loop></video><button class="detail-video-delete">&times;</button><div class="detail-video-play"><div class="detail-video-play-icon"><svg viewBox="0 0 24 24" fill="white"><polygon points="6,3 20,12 6,21"/></svg></div></div><div class="detail-video-label">${vid.name||'视频'}</div>`;
+      const ve=div.querySelector('video');
+      div.querySelector('.detail-video-play').addEventListener('click',()=>openLightbox(src,'video'));
+      div.querySelector('.detail-video-delete').addEventListener('click',e=>{e.stopPropagation();if(vid.blobUrl)URL.revokeObjectURL(vid.blobUrl);p.videos.splice(idx,1);saveProjects();renderDetail();renderProjects();});
+      div.addEventListener('mouseenter',()=>{ve.play().catch(()=>{});});
+      div.addEventListener('mouseleave',()=>{ve.pause();ve.currentTime=0;});
+      vg.appendChild(div);
+    });
+    $('#videoCount').textContent=`${(p.videos||[]).length} 个`;
+    $('#detailAddToBanner').onclick=()=>{const ci=p.coverIdx>=0&&p.coverIdx<p.images.length?p.coverIdx:0;if(!p.images.length||!p.images[ci]){toast('请先添加封面图');return;}const pb=getBannerList();const already=pb.findIndex(b=>b.projectId===p.id);if(already>=0){pb.splice(already,1);toast('已从轮播移除');}else{pb.push({img:p.images[ci].dataUrl,name:p.name,category:catCnMap[p.category]||p.category,projectId:p.id});toast('已添加到首页轮播');}saveBannerList(pb).catch(()=>toast('轮播保存失败'));if(typeof refreshBanner==='function')refreshBanner();};
+    $('#detailDelete').onclick=()=>deleteProject(currentProjectId);
+  }
+
+  function addImages(files){
+    const p=getProject();if(!p)return;
+    const valid=files.filter(f=>f.type.startsWith('image/')&&f.size<=10*1024*1024);
+    if(!valid.length){toast('无有效图片（需小于10MB）');return;}
+    let done=0;
+    valid.forEach(f=>{const r=new FileReader();r.onload=function(ev){const b64=ev.target.result;if(b64.length>800000){compress(b64,1400,0.7,c=>{p.images.push({id:'img_'+Date.now()+Math.random(),dataUrl:c});done++;check();});}else{p.images.push({id:'img_'+Date.now()+Math.random(),dataUrl:b64});done++;check();}};r.readAsDataURL(f);});
+    function check(){if(done===valid.length){if(p.coverIdx<0&&p.images.length)p.coverIdx=0;saveProjects();renderDetail();renderProjects();toast(`已添加 ${done} 张图片`);}}
+  }
+  function addVideos(files){
+    const p=getProject();if(!p)return;p.videos=p.videos||[];
+    const valid=files.filter(f=>f.type.startsWith('video/'));
+    if(!valid.length){toast('无有效视频文件');return;}
+    let done=0;
+    valid.forEach(f=>{if(f.size>50*1024*1024){toast(`视频 ${f.name} 超过50MB，已跳过`);done++;return;}const blobUrl=URL.createObjectURL(f);const name=f.name.replace(/\.[^.]+$/,'');if(f.size<5*1024*1024){const r=new FileReader();r.onload=function(ev){p.videos.push({id:'vid_'+Date.now()+Math.random(),dataUrl:ev.target.result,blobUrl,name});done++;finish();};r.readAsDataURL(f);}else{p.videos.push({id:'vid_'+Date.now()+Math.random(),dataUrl:null,blobUrl,name});done++;finish();}});
+    function finish(){if(done>=valid.length){saveProjects();renderDetail();renderProjects();toast('已添加视频');}}
+  }
+  function compress(b64,w,q,cb){const img=new Image();img.onload=()=>{const cv=document.createElement('canvas');let iw=img.width,ih=img.height;if(iw>w){ih=ih*w/iw;iw=w;}cv.width=iw;cv.height=ih;cv.getContext('2d').drawImage(img,0,0,iw,ih);cb(cv.toDataURL('image/jpeg',q));};img.src=b64;}
+
+  function openLightbox(src,type){
+    const lc=$('#lightboxContent');
+    lc.innerHTML=type==='video'?`<video src="${src}" controls autoplay style="max-width:92vw;max-height:90vh;"></video>`:`<img src="${src}">`;
+    $('#lightbox').classList.add('open');document.body.style.overflow='hidden';
+  }
+  function closeLightbox(){$('#lightbox').classList.remove('open');document.body.style.overflow='';const v=$('#lightboxContent video');if(v){v.pause();v.src='';}$('#lightboxContent').innerHTML='';}
+
+  let tt;function toast(m){clearTimeout(tt);const t=$('#toast');t.textContent=m;t.classList.add('show');tt=setTimeout(()=>t.classList.remove('show'),2200);}
+
+  function bind(){
+    window.addEventListener('scroll',()=>$('#header').classList.toggle('scrolled',window.scrollY>80));
+    $('#detailBack').addEventListener('click',closeDetail);
+    $('#detailAddImage').addEventListener('click',()=>$('#detailImageInput').click());
+    $('#detailAddVideo').addEventListener('click',()=>$('#detailVideoInput').click());
+    $('#detailImageInput').addEventListener('change',e=>{if(e.target.files.length)addImages(Array.from(e.target.files));e.target.value='';});
+    $('#detailVideoInput').addEventListener('change',e=>{if(e.target.files.length)addVideos(Array.from(e.target.files));e.target.value='';});
+    $('#btnNewProject').addEventListener('click',()=>{const n=prompt('项目名称：','新项目');if(n===null)return;const id=createProject(n||'新项目',currentFilter==='all'?'spa':currentFilter);openDetail(id);});
+    $('#btnSyncBanner').addEventListener('click',()=>{
+      const list = [];
+      projects.forEach(p => {
+        const ci = p.coverIdx>=0 && p.coverIdx<p.images.length ? p.coverIdx : 0;
+        if (p.images.length && p.images[ci] && p.images[ci].dataUrl) {
+          list.push({img:p.images[ci].dataUrl, name:p.name, category:catCnMap[p.category]||p.category, projectId:p.id});
+        }
+      });
+      if (!list.length) { toast('没有可用的封面图，请先为案例添加图片'); return; }
+      saveBannerList(list).catch(()=>toast('轮播保存失败'));
+      if (typeof refreshBanner === 'function') refreshBanner();
+      toast(`${list.length} 个案例已同步到轮播`);
+    });
+    $$('.filter-btn').forEach(b=>b.addEventListener('click',()=>{$$('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');currentFilter=b.dataset.filter;renderProjects();}));
+    $('#lightboxClose').addEventListener('click',closeLightbox);
+    $('#lightbox').addEventListener('click',e=>{if(e.target===$('#lightbox'))closeLightbox();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#lightbox').classList.contains('open'))closeLightbox();else if($('#detailPage').classList.contains('open'))closeDetail();}});
+    /* hero 编辑 */
+    $('.hero-logo').addEventListener('click',()=>$('#heroLogoInput').click());
+    $('.hero-photo').addEventListener('click',()=>$('#heroPhotoInput').click());
+    $('#heroLogoInput').addEventListener('change',e=>{if(e.target.files[0]){const r=new FileReader();r.onload=function(ev){$('.hero-logo img').src=ev.target.result;try{localStorage.setItem(STORAGE_HERO_LOGO,ev.target.result);}catch(ex){}};r.readAsDataURL(e.target.files[0]);}e.target.value='';});
+    $('#heroPhotoInput').addEventListener('change',e=>{if(e.target.files[0]){const r=new FileReader();r.onload=function(ev){$('.hero-photo img').src=ev.target.result;try{localStorage.setItem(STORAGE_HERO_PHOTO,ev.target.result);}catch(ex){}};r.readAsDataURL(e.target.files[0]);}e.target.value='';});
+    /* 导出 */
+    $('#btnExport').addEventListener('click',()=>{
+      const h=document.documentElement.outerHTML;
+      let o=h.replace('<meta name="viewport" content="width=device-width, initial-scale=1.0">','<meta name="viewport" content="width=1440, initial-scale=0.5">');
+      // remove editing elements
+      o=o.replace(/<button class="btn-export"[^>]*>.*?<\/button>/g,'');
+      o=o.replace(/<button class="btn-new-project"[^>]*>.*?<\/button>/g,'');
+      o=o.replace(/<button class="btn dark" id="detailAddToBanner">.*?<\/button>/g,'');
+      o=o.replace(/<button class="btn danger" id="detailDelete">.*?<\/button>/g,'');
+      o=o.replace(/<div class="detail-add-zone"[^>]*>.*?<\/div>/g,'');
+      o=o.replace(/<input type="file" class="hidden-input"[^>]*>/g,'');
+      // embed hero images - read current src from DOM, use known original paths to locate in HTML
+      const logoSrc=document.querySelector('.hero-logo img')?.src||'';
+      const photoSrc=document.querySelector('.hero-photo img')?.src||'';
+      o=o.replace(/src="[^"]*logo-new[^"]*"/,`src="${logoSrc}"`);
+      o=o.replace(/src="[^"]*team-photo-new[^"]*"/,`src="${photoSrc}"`);
+      if(!o.includes('logo-new'))o=o.replace(/src="(data:image\/[^"]*logo[^"]*|[^"]*horizon-assets\/logo[^"]*)"/,`src="${logoSrc}"`);
+      if(!o.includes('team-photo-new'))o=o.replace(/src="(data:image\/[^"]*photo[^"]*|[^"]*horizon-assets\/team-photo[^"]*)"/,`src="${photoSrc}"`);
+      // embed projects data from in-memory array
+      const pj = JSON.stringify(projects).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      if (projects.length) o=o.replace(`loadData().then(()=>{renderProjects();`,
+        `try{projects=JSON.parse('${pj}');}catch(e){}renderProjects();`);
+      // embed banner data
+      if (_bannerCache.length) {
+        const bd = JSON.stringify(_bannerCache);
+        o=o.replace('initBanner();',
+          `try{_bannerCache=${bd};saveBannerList(_bannerCache);}catch(e){}initBanner();`);
+      }
+      const b=new Blob([o],{type:'text/html'});
+      const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='horizon-share.html';a.click();
+      toast('分享版已下载！上传到GitHub覆盖index.html即可');
+    });
+    /* 保存副本 - 数据固化到文件中 */
+    $('#btnSave').addEventListener('click',()=>{
+      const h=document.documentElement.outerHTML;
+      let o=h;
+      // embed hero images
+      const logoSrc=document.querySelector('.hero-logo img')?.src||'';
+      const photoSrc=document.querySelector('.hero-photo img')?.src||'';
+      o=o.replace(/src="[^"]*logo-new[^"]*"/,`src="${logoSrc}"`);
+      o=o.replace(/src="[^"]*team-photo-new[^"]*"/,`src="${photoSrc}"`);
+      // hardcode hero images into loadHeroAssets
+      o=o.replace('function loadHeroAssets(){',
+        `function loadHeroAssets(){try{localStorage.setItem('${STORAGE_HERO_LOGO}','${logoSrc.replace(/'/g,"\\'")}');localStorage.setItem('${STORAGE_HERO_PHOTO}','${photoSrc.replace(/'/g,"\\'")}');}catch(e){}`);
+      // hardcode projects data from in-memory array into the loadData fallback
+      const pj = JSON.stringify(projects).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      if (projects.length) o=o.replace(`loadData().then(()=>{renderProjects();`,
+        `try{projects=JSON.parse('${pj}');}catch(e){}renderProjects();`);
+      const bd = JSON.stringify(_bannerCache);
+      if(_bannerCache.length)o=o.replace('initBanner();',
+        `try{_bannerCache=${bd};saveBannerList(_bannerCache);}catch(e){}initBanner();`);
+      const b=new Blob([o],{type:'text/html'});
+      const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='horizon-official-site.html';a.click();
+      toast('副本已下载！用它替换 E:\\马威斯\\horizon-official-site.html 即可');
+    });
+  }
+
+  function loadHeroAssets(){
+    const ls=localStorage.getItem(STORAGE_HERO_LOGO);if(ls){$('.hero-logo img').src=ls;}
+    const ps=localStorage.getItem(STORAGE_HERO_PHOTO);if(ps){$('.hero-photo img').src=ps;}
+  }
+  loadData().then(async () => { try { await loadBannerFromDB(); } catch(e) {} renderProjects(); bind(); loadHeroAssets(); initBanner(); });
+})();
+
+/* ═══ BANNER CAROUSEL ═══ */
+function initBanner() {
+  const track = document.getElementById('bannerTrack');
+  const dots  = document.getElementById('bannerDots');
+  const prev  = document.getElementById('bannerPrev');
+  const next  = document.getElementById('bannerNext');
+
+  let slides = [];
+  let current = 0;
+  let timer = null;
+
+  function loadBannerData() {
+    slides = _bannerCache;
+  }
+
+  function renderSlides() {
+    if (!slides.length) {
+      track.innerHTML = '<div class="banner-empty">暂无轮播内容 — 在案例详情页点击「添加到首页轮播」即可</div>';
+      dots.innerHTML = '';
+      prev.style.display = 'none';
+      next.style.display = 'none';
+      track.style.transform = '';
+      return;
+    }
+    prev.style.display = '';
+    next.style.display = '';
+    track.innerHTML = slides.map((s, i) =>
+      `<div class="banner-slide" data-index="${i}">
+        <img src="${s.img}" alt="${escAttr(s.name)}">
+        <div class="slide-label">${escHtml(s.name)}<span class="en">${escHtml(s.category||'')}</span></div>
+      </div>`
+    ).join('');
+    dots.innerHTML = slides.map((_, i) =>
+      `<span class="banner-dot${i===0?' active':''}" data-index="${i}"></span>`
+    ).join('');
+    goTo(0);
+  }
+
+  function goTo(idx) {
+    current = ((idx % slides.length) + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    document.querySelectorAll('.banner-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    resetTimer();
+  }
+
+  function nextSlide() { goTo(current + 1); }
+  function prevSlide() { goTo(current - 1); }
+  function resetTimer() { clearInterval(timer); timer = setInterval(nextSlide, 5000); }
+
+  function escHtml(s) {
+    const d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+  }
+  function escAttr(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  prev.addEventListener('click', prevSlide);
+  next.addEventListener('click', nextSlide);
+  dots.addEventListener('click', e => {
+    const idx = parseInt(e.target.dataset.index);
+    if (!isNaN(idx)) goTo(idx);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'ArrowRight') nextSlide();
+  });
+
+  /* touch swipe */
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) dx > 0 ? prevSlide() : nextSlide();
+  });
+
+  loadBannerData();
+  renderSlides();
+
+  /* expose for other modules */
+  window.refreshBanner = () => { loadBannerData(); renderSlides(); };
+}
+</script>
+</body>
+</html>
